@@ -11,3 +11,7 @@ terraform {
   backend "azurerm" {
   }
 }
+
+auth_settings {
+  test = "453112"
+}
