@@ -144,8 +144,8 @@ You can deploy multiple TerraGoat stacks in a single Azure subscription using th
 
 ```bash
 export TERRAGOAT_RESOURCE_GROUP="TerraGoatRG"
-export TERRAGOAT_STATE_STORAGE_ACCOUNT="mydevsecopssa"
-export TERRAGOAT_STATE_CONTAINER="mydevsecops"
+export TERRAGOAT_STATE_STORAGE_ACCOUNT="teststoragejonasa2"
+export TERRAGOAT_STATE_CONTAINER="mycontainerjonasa2"
 export TF_VAR_environment="dev"
 export TF_VAR_region="westus"
 
@@ -166,10 +166,7 @@ az storage container create --name $TERRAGOAT_STATE_CONTAINER --account-name $TE
 
 ```bash
 cd terraform/azure/
-terraform init -reconfigure -backend-config="resource_group_name=$TERRAGOAT_RESOURCE_GROUP" \
-    -backend-config "storage_account_name=$TERRAGOAT_STATE_STORAGE_ACCOUNT" \
-    -backend-config="container_name=$TERRAGOAT_STATE_CONTAINER" \
-    -backend-config "key=$TF_VAR_environment.terraform.tfstate"
+terraform init -reconfigure -backend-config="resource_group_name=$TERRAGOAT_RESOURCE_GROUP" -backend-config "storage_account_name=$TERRAGOAT_STATE_STORAGE_ACCOUNT" -backend-config="container_name=$TERRAGOAT_STATE_CONTAINER" -backend-config "key=$TF_VAR_environment.terraform.tfstate"
 
 terraform apply
 ```
